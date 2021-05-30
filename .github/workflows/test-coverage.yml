@@ -11,14 +11,9 @@ jobs:
         run: 
           dotnet test --collect:"XPlat Code Coverage"
 
-      - name: Archive production artifacts
+      - name: Upload to Codecov
         uses: codecov/codecov-action@v1
         with:
           files: /home/runner/work/console-calculator/console-calculator/**/TestResults/**/coverage.cobertura.xml
-          flags: unittests 
+          flags: unittests
           fail_ci_if_error: true
-          verbose: false
-        # uses: actions/upload-artifact@v2
-        # with:
-        #   name: code-coverage-report
-        #   path: /home/runner/work/console-calculator/console-calculator/**/TestResults/**/coverage.cobertura.xml
