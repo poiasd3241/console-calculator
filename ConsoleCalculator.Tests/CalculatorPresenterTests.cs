@@ -108,6 +108,29 @@ namespace ConsoleCalculator.Tests
 
 		#region Tests
 
+
+		[Fact]
+		public void ShouldRunProgramMain()
+		{
+			// Given
+			var mockConsoleIO = new MockConsoleIO(_inputForOneCalculationSequenceAndExit);
+			Program.CalcPresenter = new(new Calculator(), mockConsoleIO);
+
+			var expectedOutput =
+				_titleOutput +
+				_validInputDisplayAndEnter +
+				"Your result: 3\n\n" +
+				_exitConfirmedDisplay;
+
+			// When
+			Program.Main(null);
+
+			// Then
+			Assert.Equal(expectedOutput, mockConsoleIO.CurrentOutput);
+		}
+
+
+
 		[Fact]
 		public void ShouldRunOneCalculationSequenceAndExit()
 		{

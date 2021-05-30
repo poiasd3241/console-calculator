@@ -2,10 +2,11 @@
 {
 	class Program
 	{
-		static void Main(string[] args)
+		public static CalculatorPresenter CalcPresenter = new(new Calculator(), new ConsoleTextIO());
+
+		public static void Main(string[] args)
 		{
-			CalculatorPresenter calculatorPresenter = new(new Calculator(), new ConsoleTextIO());
-			calculatorPresenter.RunCalculatorTextIO();
+			CalcPresenter.RunCalculatorTextIO();
 		}
 	}
 }
