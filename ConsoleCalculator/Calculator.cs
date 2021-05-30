@@ -1,26 +1,26 @@
 ﻿namespace ConsoleCalculator
 {
-	class Calculator
+	public class Calculator : ICalculator
 	{
-		public static double DoOperation(double num1, double num2, string op)
+		public double DoOperation(double number1, double number2, string operation)
 		{
 			var result = double.NaN;
 
-			switch (op)
+			switch (operation)
 			{
 				case "a":
-					result = num1 + num2;
+					result = number1 + number2;
 					break;
 				case "s":
-					result = num1 - num2;
+					result = number1 - number2;
 					break;
 				case "m":
-					result = num1 * num2;
+					result = number1 * number2;
 					break;
 				case "d":
-					if (num2 != 0)
+					if (number2 != 0)
 					{
-						result = num1 / num2;
+						result = number1 / number2;
 					}
 					break;
 				default:
