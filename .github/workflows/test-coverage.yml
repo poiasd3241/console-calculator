@@ -14,7 +14,7 @@ jobs:
       - name: Archive production artifacts
         uses: codecov/codecov-action@v1
         with:
-          files: ./coverage.cobertura.xml
+          files: /home/runner/work/console-calculator/console-calculator/**/TestResults/**/coverage.cobertura.xml
           flags: unittests # optional
           fail_ci_if_error: true
           verbose: true
