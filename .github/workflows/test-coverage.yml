@@ -15,9 +15,9 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           files: /home/runner/work/console-calculator/console-calculator/**/TestResults/**/coverage.cobertura.xml
-          flags: unittests # optional
+          flags: unittests 
           fail_ci_if_error: true
-          verbose: true
+          verbose: false
         # uses: actions/upload-artifact@v2
         # with:
         #   name: code-coverage-report
