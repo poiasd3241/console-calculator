@@ -7,12 +7,7 @@ namespace ConsoleCalculator.Tests
 {
 	public class ConsoleTextIOTests
 	{
-		[Fact]
-		public void ShouldCreateConsoleTextIO()
-		{
-			ConsoleTextIO consoleTextIO = new();
-			Assert.Equal("Enter", consoleTextIO.ConfirmInputLineCommandName);
-		}
+		#region Mocks
 
 		private class MockTextReader : TextReader
 		{
@@ -45,24 +40,29 @@ namespace ConsoleCalculator.Tests
 			}
 		}
 
-		#region Mocks Tests
-
-		//[Fact]
-		//public void ShouldCreateMockTextWriter()
-		//{
-		//	MockTextWriter mockTextWriter = new();
-		//	Assert.Equal(Encoding.ASCII, mockTextWriter.Encoding);
-		//}
-
 		#endregion
+
+		#region Tests
+
+		[Fact]
+		public void ShouldCreateConsoleTextIO()
+		{
+			// Given
+			ConsoleTextIO consoleTextIO = new();
+
+			// When, Then
+			Assert.Equal("Enter", consoleTextIO.ConfirmInputLineCommandName);
+		}
 
 
 		[Fact]
 		public void ShouldReadLine()
 		{
+			// Given
 			ConsoleTextIO consoleTextIO = new();
 			Console.SetIn(new MockTextReader());
 
+			// When, Then
 			Assert.Equal("read line!", consoleTextIO.ReadLine());
 		}
 
@@ -97,5 +97,7 @@ namespace ConsoleCalculator.Tests
 			// Then
 			Assert.Equal(input, mockTextWriter.CurrentOutput);
 		}
+
+		#endregion
 	}
 }

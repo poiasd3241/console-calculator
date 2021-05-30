@@ -64,7 +64,7 @@ namespace ConsoleCalculator.Tests
 
 		#region Mocks
 
-		private class MockConsoleIO : ITextIO
+		public class MockConsoleIO : ITextIO
 		{
 			public string ConfirmInputLineCommandName => "Enter";
 			public Queue<string> CurrentInputQueue { get; private set; }
@@ -106,30 +106,25 @@ namespace ConsoleCalculator.Tests
 
 		#endregion
 
-		#region Tests
+		#region Public Methods
 
-
-		[Fact]
-		public void ShouldRunProgramMain()
+		public MockConsoleIO GetOneCalculationSequenceAndExitMockConsoleIO()
 		{
-			// Given
-			var mockConsoleIO = new MockConsoleIO(_inputForOneCalculationSequenceAndExit);
-			Program.CalcPresenter = new(new Calculator(), mockConsoleIO);
+			return new MockConsoleIO(_inputForOneCalculationSequenceAndExit);
+		}
 
-			var expectedOutput =
+		public string GetOneCalculationSequenceAndExitOutput()
+		{
+			return
 				_titleOutput +
 				_validInputDisplayAndEnter +
 				"Your result: 3\n\n" +
 				_exitConfirmedDisplay;
-
-			// When
-			Program.Main(null);
-
-			// Then
-			Assert.Equal(expectedOutput, mockConsoleIO.CurrentOutput);
 		}
 
+		#endregion
 
+		#region Tests
 
 		[Fact]
 		public void ShouldRunOneCalculationSequenceAndExit()
@@ -137,11 +132,7 @@ namespace ConsoleCalculator.Tests
 			// Given
 			var mockConsoleIO = new MockConsoleIO(_inputForOneCalculationSequenceAndExit);
 			_presenter = new(new Calculator(), mockConsoleIO);
-			var expectedOutput =
-				_titleOutput +
-				_validInputDisplayAndEnter +
-				"Your result: 3\n\n" +
-				_exitConfirmedDisplay;
+			var expectedOutput = GetOneCalculationSequenceAndExitOutput();
 
 			// When
 			_presenter.RunCalculatorTextIO();
